@@ -34,3 +34,6 @@ CREATE TABLE `Auth`.`LoginLog` (
     PRIMARY KEY (`LoginDate`, `Email`)
 );
 DESC `Auth`.`LoginLog`;
+
+ALTER TABLE `Auth`.`UserPassword` MODIFY `Password` VARCHAR(255) NOT NULL;
+ALTER TABLE `Auth`.`UserPassword` MODIFY `PasswordSalt` VARCHAR(255) NOT NULL;
