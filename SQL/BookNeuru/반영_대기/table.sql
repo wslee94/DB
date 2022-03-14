@@ -37,3 +37,13 @@ DESC `Auth`.`LoginLog`;
 
 ALTER TABLE `Auth`.`UserPassword` MODIFY `Password` VARCHAR(255) NOT NULL;
 ALTER TABLE `Auth`.`UserPassword` MODIFY `PasswordSalt` VARCHAR(255) NOT NULL;
+
+CREATE TABLE `Auth`.`Token` (
+	`UserID` INT UNSIGNED NOT NULL PRIMARY KEY,
+	`Token` VARCHAR(255) NOT NULL,
+    `CreateDate` DATETIME NOT NULL,
+    `UpdateDate` DATETIME NOT NULL,
+    FOREIGN KEY (`UserID`)
+    REFERENCES `Auth`.`User`(UserID)
+);
+DESC `Auth`.`Token`;
