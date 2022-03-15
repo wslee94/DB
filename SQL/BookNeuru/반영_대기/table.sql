@@ -46,4 +46,5 @@ CREATE TABLE `Auth`.`Token` (
     FOREIGN KEY (`UserID`)
     REFERENCES `Auth`.`User`(UserID)
 );
+CREATE UNIQUE INDEX `UIX_Token` ON `Auth`.`Token` (`Token` ASC);
 DESC `Auth`.`Token`;
