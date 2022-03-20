@@ -48,3 +48,30 @@ CREATE TABLE `Auth`.`Token` (
 );
 CREATE UNIQUE INDEX `UIX_Token` ON `Auth`.`Token` (`Token` ASC);
 DESC `Auth`.`Token`;
+
+CREATE SCHEMA `Book` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE TABLE `Book`.`Meeting` (
+	`MeetingID` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`Title` VARCHAR(255) NOT NULL,
+	`Category` VARCHAR(20) NULL,
+	`Location` VARCHAR(255) NULL,
+	`MeetingImageURL` VARCHAR(255) NULL,
+	`Description` TEXT NOT NULL,
+    `CreateDate` DATETIME NOT NULL,
+    `UpdateDate` DATETIME NOT NULL
+);
+DESC `Book`.`Meeting`;
+
+CREATE TABLE `Book`.`MeetingParticipant` (
+	`MeetingID` INT UNSIGNED NOT NULL,
+	`UserID` INT UNSIGNED NOT NULL,
+	`IsOwner` BIT NOT NULL,
+    `CreateDate` DATETIME NOT NULL,
+    `UpdateDate` DATETIME NOT NULL,
+    PRIMARY KEY (`MeetingID`, `UserID`),
+    FOREIGN KEY (`MeetingID`)
+    REFERENCES `Book`.`Meeting`(MeetingID),
+    FOREIGN KEY (`UserID`)
+    REFERENCES `Auth`.`User`(UserID)
+);
+DESC `Book`.`MeetingParticipant`;
