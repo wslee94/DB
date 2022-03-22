@@ -75,3 +75,8 @@ CREATE TABLE `Book`.`MeetingParticipant` (
     REFERENCES `Auth`.`User`(UserID)
 );
 DESC `Book`.`MeetingParticipant`;
+
+ALTER TABLE `Book`.`Meeting` ADD `CreateUserID` INT UNSIGNED NOT NULL AFTER CreateDate;
+ALTER TABLE `Book`.`Meeting` ADD `UpdateUserID` INT UNSIGNED NOT NULL AFTER UpdateDate;
+ALTER TABLE `Book`.`MeetingParticipant` ADD `CreateUserID` INT UNSIGNED NOT NULL AFTER CreateDate;
+ALTER TABLE `Book`.`MeetingParticipant` ADD `UpdateUserID` INT UNSIGNED NOT NULL AFTER UpdateDate;
