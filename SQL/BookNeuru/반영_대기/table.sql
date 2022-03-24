@@ -80,3 +80,6 @@ ALTER TABLE `Book`.`Meeting` ADD `CreateUserID` INT UNSIGNED NOT NULL AFTER Crea
 ALTER TABLE `Book`.`Meeting` ADD `UpdateUserID` INT UNSIGNED NOT NULL AFTER UpdateDate;
 ALTER TABLE `Book`.`MeetingParticipant` ADD `CreateUserID` INT UNSIGNED NOT NULL AFTER CreateDate;
 ALTER TABLE `Book`.`MeetingParticipant` ADD `UpdateUserID` INT UNSIGNED NOT NULL AFTER UpdateDate;
+
+ALTER TABLE `Book`.`Meeting` ADD `IsActive` BIT NOT NULL DEFAULT 1 AFTER `Description`;
+ALTER TABLE `Auth`.`User` ADD `IsActive` BIT NOT NULL DEFAULT 1 AFTER `ProfileImageURL`;
