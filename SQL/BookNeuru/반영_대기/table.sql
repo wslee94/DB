@@ -83,3 +83,19 @@ ALTER TABLE `Book`.`MeetingParticipant` ADD `UpdateUserID` INT UNSIGNED NOT NULL
 
 ALTER TABLE `Book`.`Meeting` ADD `IsActive` BIT NOT NULL DEFAULT 1 AFTER `Description`;
 ALTER TABLE `Auth`.`User` ADD `IsActive` BIT NOT NULL DEFAULT 1 AFTER `ProfileImageURL`;
+
+CREATE TABLE `Book`.`MeetingInvitation` (
+	`MeetingID` INT UNSIGNED NOT NULL,
+	`UserID` INT UNSIGNED NOT NULL,
+    `IsActive` BIT NOT NULL DEFAULT 1,
+    `ApprovalDate` DATETIME NULL,
+    `CreateDate` DATETIME NOT NULL,
+    `CreateUserID` INT UNSIGNED NOT NULL,
+    `UpdateDate` DATETIME NOT NULL,
+    `UpdateUserID` INT UNSIGNED NOT NULL,
+    PRIMARY KEY (`MeetingID`, `UserID`),
+    FOREIGN KEY (`MeetingID`)
+    REFERENCES `Book`.`Meeting`(MeetingID),
+    FOREIGN KEY (`UserID`)
+    REFERENCES `Auth`.`User`(UserID)
+);
