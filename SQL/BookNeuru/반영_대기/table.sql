@@ -99,3 +99,40 @@ CREATE TABLE `Book`.`MeetingInvitation` (
     FOREIGN KEY (`UserID`)
     REFERENCES `Auth`.`User`(UserID)
 );
+
+CREATE TABLE `Book`.`MeetingActivity` (
+	`MeetingID` INT UNSIGNED NOT NULL,
+  `ActivitySeq` SMALLINT UNSIGNED NOT NULL,
+  `Title` VARCHAR(255) NOT NULL,
+  `Book` VARCHAR(255) NOT NULL,
+  `ActivityDate` DATE NULL,
+  `ActivityTime` TIME NULL,
+	`Description` TEXT NULL,
+  `Category` VARCHAR(20) NULL,
+	`Location` VARCHAR(255) NULL,
+  `IsActive` BIT NOT NULL DEFAULT 1,
+	`CreateDate` DATETIME NOT NULL,
+  `CreateUserID` INT UNSIGNED NOT NULL,
+  `UpdateDate` DATETIME NOT NULL,
+  `UpdateUserID` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`MeetingID`, `ActivitySeq`),
+  FOREIGN KEY (`MeetingID`)
+  REFERENCES `Book`.`Meeting`(MeetingID)
+);
+DESC `Book`.`MeetingActivity`;
+
+CREATE TABLE `Book`.`MeetingActivityParticipant` (
+	`MeetingID` INT UNSIGNED NOT NULL,
+  `ActivitySeq` SMALLINT UNSIGNED NOT NULL,
+	`UserID` INT UNSIGNED NOT NULL,
+	`CreateDate` DATETIME NOT NULL,
+  `CreateUserID` INT UNSIGNED NOT NULL,
+  `UpdateDate` DATETIME NOT NULL,
+  `UpdateUserID` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`MeetingID`, `ActivitySeq`, `UserID`),
+  FOREIGN KEY (`MeetingID`, `ActivitySeq`)
+  REFERENCES `Book`.`MeetingActivity`(MeetingID, ActivitySeq),
+  FOREIGN KEY (`UserID`)
+  REFERENCES `Auth`.`User`(UserID)
+);
+DESC `Book`.`MeetingActivityParticipant`;
